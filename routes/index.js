@@ -2,23 +2,32 @@ require('dotenv').config()
 
 const express = require('express')
 const session = require('express-session')
-const RedisStore = require('connect-redis')(session);
-const redisClient = require('redis').createClient();
+const app = express()
+
+const MySQLStore = require('express-mysql-session')(session);
+const sequelize = require('../models/db')
+
 const bcrypt = require('bcryptjs')
 const router = express.Router()
 const Answer = require('../models/Answer')
 const { User } = require('../models/User')
- 
+
+const sessionStore = new MySQLStore({}, sequelize);
 
 // Config Middleware
 router.use(express.urlencoded({extended: true}))
 router.use(express.static('publlic'))
+
 app.use(session({
-    store: new RedisStore({ client: redisClient }),
-    secret: process.env.SESSION_SECRET || 'defaultsecretkey',
+    key: 'refugio_session_key',
+    secret: process.env.SESSION_SECRET,
+    store: sessionStore,
     resave: false,
-    saveUninitialized: false
-}))
+    saveUninitialized: false,
+    cookie: {
+      maxAge: 1000 * 60 * 60 * 24
+    }
+}));
 
 
 // Middleware para verificar se o user esta logado
