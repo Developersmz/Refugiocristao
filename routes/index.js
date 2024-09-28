@@ -2,7 +2,8 @@ require('dotenv').config()
 
 const express = require('express')
 const session = require('express-session')
-const flash = require('connect-flash')
+const RedisStore = require('connect-redis')(session);
+const redisClient = require('redis').createClient();
 const bcrypt = require('bcryptjs')
 const router = express.Router()
 const Answer = require('../models/Answer')
@@ -12,12 +13,12 @@ const { User } = require('../models/User')
 // Config Middleware
 router.use(express.urlencoded({extended: true}))
 router.use(express.static('publlic'))
-router.use(session({
-    secret: 'secret',
+app.use(session({
+    store: new RedisStore({ client: redisClient }),
+    secret: process.env.SESSION_SECRET || 'defaultsecretkey',
     resave: false,
     saveUninitialized: false
 }))
-router.use(flash())
 
 
 // Middleware para verificar se o user esta logado
