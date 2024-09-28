@@ -2,8 +2,6 @@ require('dotenv').config()
 
 const express = require('express')
 const session = require('express-session')
-const connectRedis = require('connect-redis');
-const RedisStore = new connectRedis(session);
 const bcrypt = require('bcryptjs')
 const router = express.Router()
 const Answer = require('../models/Answer')
@@ -13,9 +11,8 @@ const { User } = require('../models/User')
 // Config Middleware
 router.use(express.urlencoded({extended: true}))
 router.use(express.static('publlic'))
-app.use(session({
-    store: new RedisStore({ client: redisClient }),
-    secret: process.env.SESSION_SECRET || 'defaultsecretkey',
+router.use(session({
+    secret: 'secret',
     resave: false,
     saveUninitialized: false
 }))
