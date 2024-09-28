@@ -2,7 +2,7 @@ require('dotenv').config()
 
 const express = require('express')
 const session = require('express-session')
-const RedisStore = require('connect-redis')(session);
+const RedisStore = require('connect-redis').default(session);
 const redisClient = require('redis').createClient();
 const bcrypt = require('bcryptjs')
 const router = express.Router()
