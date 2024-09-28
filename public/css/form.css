@@ -1,0 +1,183 @@
+/*---------- 
+variables 
+-----------*/
+:root{
+	--main-color: #fffc5b;
+    --blue: #000c3f;
+	--default-blue: rgb(110, 233, 255);
+	--text-color: rgb(218, 218, 248);
+	--white: #fff;
+	--black: #13131a;
+	--scroll: #cccbcc;
+	--soft-black: #455152;
+	--lightgray: lightgray;
+	--color-light: hsl(252, 30%, 95%);
+	--bg: #010103;
+	--shadow: 0 0 15px rgba(0,0,0,0.25);
+    --focus: #fffc5b8e;
+}
+/*-------------- 
+Global Settings 
+---------------*/
+*{
+	font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+	margin: 0;
+	box-sizing: border-box;
+	padding: 0;
+	outline: none;
+	text-decoration: none; 
+	transition: all 0.3s ease;
+}
+html{
+	font-size: 62.5%;
+	overflow-x: hidden;
+	scroll-padding-top: 9rem;
+	scroll-behavior: smooth;
+}
+
+html::-webkit-scrollbar{
+	width: .8rem;
+}
+html::-webkit-scrollbar-track{
+	background: transparent;
+}
+html::-webkit-scrollbar-thumb{
+	background: var(--scroll);
+	border-radius: 5rem;
+}
+.container{
+	max-width: 1170px;
+	margin: auto;
+}
+.row{
+	display: flex;
+	flex-wrap: wrap;
+	margin-top: 11%;
+    text-align: center;
+}
+.section-title{
+    -ms-flex: 0 0 100%;
+    flex: 0 0 100%;
+    max-width: 100%;
+    margin-bottom: 60px;
+}
+.section-title h1{
+    font-size: 32px;
+    color: var(--lightgray);
+    font-family: inherit;
+    font-weight: 700;
+    margin: 20px 0;
+    position: relative;
+	text-align: center;
+}
+.hidden{
+    display: none;
+}
+/* Edit Section */
+.edit-section{
+    margin: auto;
+}
+.title{
+    width: 80rem;
+}
+.category{
+    width: 80rem;
+}
+h3{
+    width: 100%;
+    font-weight: 400;
+    font-size: 18px;
+    color: var(--lightgray);
+}
+h4{
+    width: 100%;
+    font-size: 16px;
+    color: var(--lightgray);
+}
+
+body{
+    background-color: var(--blue);
+}
+/* ------------
+ Form to Edit 
+-------------*/
+.form-to-edit{
+    margin: 20px 0;
+}
+
+form{
+    background-color: var(--blue);
+    width: 90rem;
+    min-height: 10rem;
+    box-shadow: var(--shadow);
+    padding: 1rem;
+    border-radius: 20px;
+    border: 1px solid #fffc5b28;
+    margin-left: 15%;
+}
+.form-to-edit form input,
+.form-to-edit form select,
+.form-to-edit form textarea{
+    width: 80rem;
+}
+input{
+    min-width: 40rem;
+    padding: 1rem;
+    margin: 10px 0;
+    border: 1px solid #fffc5b28;
+    border-radius: 20px;
+    background: transparent;
+    color: var(--lightgray);
+}
+input:focus{
+    border: 1px solid var(--focus);
+}
+input::placeholder{
+    color: #ccc;
+}
+select{
+    color: #ccc;
+    min-width: 25rem;
+    padding: 1rem;
+    margin: 10px 0;
+    border: 1px solid #fffc5b28;
+    border-radius: 20px;
+    background: var(--blue);
+}
+select:focus{
+    border: 1px solid var(--focus);
+}
+textarea{
+    color: var(--lightgray);
+    min-width: 40rem;
+    padding: 1rem;
+    margin: 10px 0;
+    border: 1px solid #fffc5b28;
+    border-radius: 20px;
+    background: transparent;
+    resize: none;   
+}
+textarea:focus{
+    border: 1px solid var(--focus);
+}
+button{
+    padding: 10px 7%;
+    margin: 10px 0;
+    border-radius: 10px;
+    font-size: 15px;
+    border: 1px solid var(--main-color);
+    color: var(--main-color);
+    background: transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+button:hover{
+    border: 1px solid var(--white);
+    color: var(--white);
+}
+
+/* Answers */
+.answers{
+    margin: auto;
+}

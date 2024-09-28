@@ -1,0 +1,264 @@
+<link rel="stylesheet" href="/css/form.css">
+
+<section class="sec-form">
+  <div class="section-title">
+    <h1>Editar resposta</h1>
+  </div>
+  <div class="container">
+    <div class="row">
+     <div class="edit-section">
+      <div class="answers-to-edit">
+        {{#each answers}}
+        <div class="title">
+          <h3>{{ title }}</h3>
+        </div>
+        <div class="category">
+          <h4>{{ category }}</h4>
+        </div>
+          <a href="/editAnswer/{{id}}" class="editBtn"><button type="submit">Editar</button></a>
+        {{/each}}
+      </div>
+     </div>
+
+    </div>
+    <div class="row">
+     <div class="form-to-edit">
+      <form action="/saveChanges" method="post">     
+        <input type="hidden" name="id" value="{{ answer.id }}">
+        <input type="text" name="title" placeholder="{{ answer.title }}"><br>
+        <select name="category" id="category-sec">
+          <option>{{ answer.category }}</option>
+          <option>Abominar</option>
+          <option>Aborto</option>
+          <option>Abstinência</option>
+          <option>Aceitar Jesus</option>
+          <option>Admiração</option>
+          <option>Adultério</option>
+          <option>Adversidade</option>
+          <option>Aflição</option>
+          <option>Ajuda ao próximo</option>
+          <option>Alegria</option>
+          <option>Aliança com Deus</option>
+          <option>Alma</option>
+          <option>Amar a Deus</option>
+          <option>Ambição</option>
+          <option>Amizade</option>
+          <option>Amor</option>
+          <option>Amor ao Próximo</option>
+          <option>Amor de Casal</option>
+          <option>Amor Próprio</option>
+          <option>Angústia</option>
+          <option>Animais</option>
+          <option>Ânimo</option>
+          <option>Ano Novo</option>
+          <option>Ansiedade</option>
+          <option>Anticristo</option>
+          <option>Aparência</option>
+          <option>Apostasia</option>
+          <option>Arrebatamento</option>
+          <option>Arrependimento</option>
+          <option>Astrologia</option>
+          <option>Ateísmo</option>
+          <option>Atitude</option>
+          <option>Autocontrole</option>
+          <option>Autoestima</option>
+          <option>Autoridade</option>
+          <option>Beber Álcool</option>
+          <option>Beleza</option>
+          <option>Bem Aventurado</option>
+          <option>Batismo no Espírito Santo</option>
+          <option>Benção de Deus</option>
+          <option>Benevolência</option>
+          <option>Benignidade</option>
+          <option>Bíblia, Ensino, Doutrina</option>
+          <option>Bispos</option>
+          <option>Boas Novas</option>
+          <option>Bom ânimo</option>
+          <option>Bondade</option>
+          <option>Buscar a Deus</option>
+          <option>Caridade</option>
+          <option>Casa de Deus</option>
+          <option>Céu</option>
+          <option>Chamado de Deus</option>
+          <option>Ciúmes</option>
+          <option>Cobiça</option>
+          <option>Compaixão</option>
+          <option>Compreensão</option>
+          <option>Conversão</option>
+          <option>Comunhão com Deus</option>
+          <option>Concupiscência</option>
+          <option>Confiar em Deus</option>
+          <option>Confortar</option>
+          <option>Consciência</option>
+          <option>Contentamento</option>
+          <option>Cordeiro de Deus</option>
+          <option>Corpo, Templo de Deus</option>
+          <option>Crianças</option>
+          <option>Cuidado de Deus</option>
+          <option>Demônios</option>
+          <option>Dependência de Deus</option>
+          <option>Dedicação</option>
+          <option>Depressão</option>
+          <option>Desânimo</option>
+          <option>Descansar em Deus</option>
+          <option>Desobediência</option>
+          <option>Desonestidade</option>
+          <option>Denominação</option>
+          <option>Deus</option>
+          <option>Deus do Impossível</option>
+          <option>Deus é Fiel</option>
+          <option>Diabo</option>
+          <option>Dinheiro</option>
+          <option>Disciplina</option>
+          <option>Dispensações</option>
+          <option>Dívidas</option>
+          <option>Divindade de Jesus Cristo</option>
+          <option>Divórcio</option>
+          <option>Dízimos e Ofertas</option>
+          <option>Doença, Enfermidade</option>
+          <option>Domínio Próprio</option>
+          <option>Dons</option>
+          <option>Dons Espirituais</option>
+          <option>Drogas</option>
+          <option>Dúvida</option>
+          <option>Edificação</option>
+          <option>Ensinar as Crianças</option>
+          <option>Esperança em Deus</option>
+          <option>Espiritismo</option>
+          <option>Espírito</option>
+          <option>Espírito Santo</option>
+          <option>Evangelho</option>
+          <option>Exaltação a Deus</option>
+          <option>Exortação</option>
+          <option>Falsos Profetas</option>
+          <option>Fé</option>
+          <option>Feitiçaria</option>
+          <option>Felicidade</option>
+          <option>Fidelidade</option>
+          <option>Filho de Deus</option>
+          <option>Filho do Homem</option>
+          <option>Filhos</option>
+          <option>Fornicação</option>
+          <option>Galardão</option>
+          <option>Glorificação</option>
+          <option>Grande Tribulação</option>
+          <option>Guardar o Coração</option>
+          <option>Heresia</option>
+          <option>Hipocrisia</option>
+          <option>Homossexualidade</option>
+          <option>Honrar os Pais</option>
+          <option>Humilhação</option>
+          <option>Idolatria</option>
+          <option>Igreja</option>
+          <option>Imoralidade</option>
+          <option>Impurezas</option>
+          <option>Inferno</option>
+          <option>Inimigos</option>
+          <option>Jejum</option>
+          <option>Jesus Cristo</option>
+          <option>Jogos de Azar</option>
+          <option>Juízo</option>
+          <option>Juízo Final</option>
+          <option>Julgamento</option>
+          <option>Justiça de Deus</option>
+          <option>Justiça Imputada</option>
+          <option>Justificação</option>
+          <option>Juventude, Jovens</option>
+          <option>Legalismo</option>
+          <option>Lei de Deus</option>
+          <option>Liberdade</option>
+          <option>Línguas (Falar em Línguas)</option>
+          <option>Livre-Arbítrio</option>
+          <option>Longanimidade</option>
+          <option>Loucura</option>
+          <option>Louvor e Adoração</option>
+          <option>Luxúria, Lascívia</option>
+          <option>Luz</option>
+          <option>Mansidão</option>
+          <option>Marca da Besta</option>
+          <option>Masturbação</option>
+          <option>Marido e Mulher</option>
+          <option>Meditação</option>
+          <option>Mentiras</option>
+          <option>Misericórdia</option>
+          <option>Mulher</option>
+          <option>Mundo</option>
+          <option>Nascer De Novo</option>
+          <option>Natal</option>
+          <option>Necessidades</option>
+          <option>Nova Criatura</option>
+          <option>Obediência</option>
+          <option>Obediência a Deus</option>
+          <option>Obras</option>
+          <option>Onipotência de Deus</option>
+          <option>Oportunidades</option>
+          <option>Oração</option>
+          <option>Ouvir a Voz de Deus</option>
+          <option>Paraíso</option>
+          <option>Paciência</option>
+          <option>Palavra de Deus</option>
+          <option>Palavra Viva</option>
+          <option>Papel da Mulher</option>
+          <option>Pastor</option>
+          <option>Pastorear</option>
+          <option>Paz</option>
+          <option>Pecado</option>
+          <option>Pensamentos</option>
+          <option>Perdão</option>
+          <option>Perseguição</option>
+          <option>Perseverança</option>
+          <option>Profecia, Profeta</option>
+          <option>Propósito</option>
+          <option>Prosperidade</option>
+          <option>Prostituição</option>
+          <option>Provação</option>
+          <option>Providência de Deus</option>
+          <option>Purificação</option>
+          <option>Quebrantamento</option>
+          <option>Redentor</option>
+          <option>Reino de Deus</option>
+          <option>Religião</option>
+          <option>Reunir-se ao nome do Senhor</option>
+          <option>Respeito</option>
+          <option>Ressurreição</option>
+          <option>Reencarnação</option>
+          <option>Revelação</option>
+          <option>Riqueza</option>
+          <option>Sabedoria</option>
+          <option>Sacerdócio</option>
+          <option>Salvação</option>
+          <option>Salvador</option>
+          <option>Santificação</option>
+          <option>Saúde</option>
+          <option>Sentido da Vida
+          </option>
+          <option>Solidão</option>
+          <option>Sonhos</option>
+          <option>Submissão</option>
+          <option>Suicídio</option>
+          <option>Superstição</option>
+          <option>Suplicar</option>
+          <option>Temor de Deus, Temer a Deus</option>
+          <option>Tentação</option>
+          <option>Tesouros</option>
+          <option>Testemunhar</option>
+          <option>Traição</option>
+          <option>Tribulação</option>
+          <option>Trindade</option>
+          <option>Tristeza</option>
+          <option>Unção</option>
+          <option>Vaidade</option>
+          <option>Vaso</option>
+          <option>Verdade</option>
+          <option>Vício</option>
+          <option>Vida Eterna</option>
+          <option>Volta de Jesus</option>
+          <option>Zelo</option>
+        </select><br>
+        <textarea name="answer" id="answer-text" cols="30" rows="10">{{ answer.answer }}</textarea><br>
+        <a href="/saveChanges"><button type="submit">Editar</button></a>
+      </form>
+     </div>
+     </div>
+  </div>
+</section>

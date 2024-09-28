@@ -1,0 +1,80 @@
+<link rel="stylesheet" href="/css/dashboard.css">
+
+<section class="dashboard">
+  <div class="container">
+    <div class="row">
+      <div class="section-title">
+        <h3>dashboard</h3>
+      </div>
+      <div class="dash-actions">
+        <div class="painel">
+          <div class="left">
+            <div class="container">
+              <div class="content">
+                <div class="actions">
+                  <div class="title">
+                    <h4>Actions</h4>
+                  </div>
+                  <a href="/addresp">Adicionar</a>
+                  <a href="/editresp">Editar</a>
+                  <a href="/deleteresp">Excluir</a>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="middle">
+            <div class="container">
+              <div class="content">
+                <div class="title">
+                  <h4>Overview</h4>
+                </div>
+                <div class="titles">
+                  <label for="title">Titulos: </label>
+                  <select id="title" class="overview-item">
+                    {{#each database}}
+                      <option>{{title}}</option>
+                    {{/each}}
+                  </select><br>
+                </div>
+                <div class="categories">
+                  <label for="category">Categorias: </label>
+                  <select id="category" class="overview-item">
+                    {{#each database}}
+                      <option>{{category}}</option>
+                    {{/each}}
+                  </select><br>
+                </div>
+                <div class="statistics">
+                  <div class="statistics-number">
+                    <h6>Titulos |</h6>
+                    <span>{{coutItems}}</span>
+                  </div>
+                  
+                  <div class="statistics-number">
+                    <h6>Categorias |</h6>
+                    <span>224</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="right">
+            <div class="container">
+              <div class="content">
+                <div class="title">
+                  <h4>Links</h4>
+                </div>
+                <a href="/">Home</a>
+                <a href="/respostas">Respostas</a>
+                <a href="/logout">Logout</a>
+                <div class="copyright">
+                  <span>RC &copy; 2024 by DevelopersMz</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

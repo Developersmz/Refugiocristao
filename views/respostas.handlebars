@@ -1,0 +1,41 @@
+<!-- LINK CSS -->
+
+<link rel="stylesheet" href="/css/respostas.css">
+<link rel="stylesheet" href="/css/fontawesome.css">
+
+<!-- Header Start -->
+<header class="header">
+    <div class="logo">
+        <a href="/">RefúgioCristão</a>
+    </div>
+    <div class="search-spot">
+      <i class="fas fa-search"></i>
+    </div>
+    <div class="search-form">
+      <input type="search" id="search-box" placeholder="pesquise">
+      <label for="search-box" class="fas fa-search" id="label-search"></label>
+    </div>
+</header>
+<!-- Header End -->     
+<!-- Respostas Section -->
+<main class="main">
+  <div class="respostas">
+    <div class="container">
+      <div class="row">
+        <div class="resposta">
+          <div class="row">
+            <!-- Resposta Item -->
+            <div class="resposta-item">
+              {{#each answers}}
+                <p class="answer"><a href="/shower/{{id}}">{{ title }}</a></p>
+              {{/each}}
+            </div>
+          </div>
+        </div>
+      </div>
+   </div>
+ </div>
+</main>
+
+<script src="/js/respostas.js"></script>
+<!-- Respostas Section End -->
