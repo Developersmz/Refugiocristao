@@ -6,11 +6,9 @@ const app = express()
 
 const MySQLStore = require('express-mysql-session')(session);
 const sequelize = require('../models/db')
-
 const bcrypt = require('bcryptjs')
 const router = express.Router()
 const { User, Answer, About } = require('../models/Models');
-const { where } = require('sequelize');
 
 const sessionStore = new MySQLStore({}, sequelize);
 
