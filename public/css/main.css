@@ -126,7 +126,7 @@ body{
 .header .theme-toggler{
 	position: relative;
 	background: transparent;
-	width: 45px;
+	width: 44px;
 	height: 22px;
 	border-radius: 20px;
 	cursor: pointer;
@@ -214,6 +214,7 @@ Images section
 .images-section{
 	min-height: 95vh;
 	position: relative;
+	padding-bottom: 30px;
 }
 .images-title{
 	width: 100%;

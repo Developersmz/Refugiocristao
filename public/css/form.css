@@ -45,6 +45,19 @@ html::-webkit-scrollbar-thumb{
 	background: var(--scroll);
 	border-radius: 5rem;
 }
+a {
+    text-decoration: none;
+}
+header{
+    padding: 20px 10px;
+}
+header a {
+    color: whitesmoke;
+    font-size: 18px;
+    border: 1px solid #cccccc75;
+    padding: 10px;
+}
+
 .container{
 	max-width: 1170px;
 	margin: auto;
@@ -120,6 +133,9 @@ form{
 .form-to-edit form textarea{
     width: 80rem;
 }
+.form-to-edit form textarea {
+    height: 20rem;
+}
 input{
     min-width: 40rem;
     padding: 1rem;
@@ -180,4 +196,25 @@ button:hover{
 /* Answers */
 .answers{
     margin: auto;
+}
+
+/* Media queries */
+@media (max-width: 750px){
+	form {
+        margin: auto;
+        width: 90%;
+        min-height: 50rem;
+    }
+    .form-to-edit form input,
+    .form-to-edit form select,
+    .form-to-edit form textarea{
+        width: 90%;
+    }
+
+}
+@media (max-width: 360px){
+	form {
+        margin: auto;
+        width: 90%;
+    }
 }

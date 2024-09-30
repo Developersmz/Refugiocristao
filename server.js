@@ -1,3 +1,5 @@
+require('dotenv').config()
+
 const express = require('express')
 const handlebars = require('express-handlebars')
 const app = express()
@@ -14,8 +16,9 @@ app.use(bodyParser.urlencoded({extended: false}))
 app.use(bodyParser.json())
 
 // Importar as rotas
-const routes = require('./routes/index')
+const routes = require('./src/index')
 app.use('/', routes)
+app.use('/about', routes)
 app.use('/respostas', routes)
 // Database operations
 app.use('/shower/:id', routes)
@@ -35,5 +38,5 @@ app.use('/dashboard', routes)
 
 
 app.listen(port, () => {
-    console.log('Server are running...')
+    console.log('SERVER ARE RUNNING...')
 })

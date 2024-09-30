@@ -9,8 +9,8 @@ const sequelize = require('../models/db')
 
 const bcrypt = require('bcryptjs')
 const router = express.Router()
-const Answer = require('../models/Answer')
-const { User } = require('../models/User')
+const { User, Answer, About } = require('../models/Models');
+const { where } = require('sequelize');
 
 const sessionStore = new MySQLStore({}, sequelize);
 
@@ -51,8 +51,39 @@ function checkAdmin(req, res, access){
 }
 
 // Rota inicial
-router.get('/', (req, res) => {
-    res.render('index')
+router.get('/', async (req, res) => {
+    try{
+        // About content
+        about = await About.findAll()
+        aboutContent = about.map(content => content.toJSON())
+
+        res.render('index', {about: aboutContent})
+    }
+    catch(e){
+        console.error('ERRO: ', e)
+        res.status(500).send('Erro interno no servidor')
+    }
+})
+
+// About 
+router.get('/about', (req, res) => {
+    res.render('about')
+})
+
+router.post('/about', (req, res) => {
+    const { title, text } = req.body
+    const about = {
+        title: title,
+        text: text
+    }
+    About.findOne()
+    .then(existingRow => {
+        if (existingRow) {
+            return existingRow.update(about)
+        } else {
+            return About.create(about)
+        }
+    }).then(() => res.redirect('/')).catch(() => res.send('<h1>Erro ao atualizar a tabela</h1>'))
 })
 
 // Adicionar resposta
@@ -65,7 +96,7 @@ router.post('/newAnswer', (req, res) => {
         title: req.body.title,
         category: req.body.category,
         answer: req.body.answer
-    }).then(() => res.redirect('/respostas')).catch((e) => console.error('Erro: ', e))
+    }).then(() => res.redirect('/respostas')).catch(() => res.send('<h1>Erro ao atualizar a tabela</h1>'))
 })
 
 // Editar resposta
@@ -96,7 +127,7 @@ router.post('/saveChanges', (req, res) => {
     }}).then(() => {
         res.redirect('/respostas')
     }).catch((e) => {
-        console.error('Erro: ', e)
+        res.send('<h1>Erro ao atualizar a tabela</h1>')
     })
     
 })
@@ -118,7 +149,7 @@ router.get('/deleteAnswer/:id', checkLogin, checkAdmin, (req, res) => {
     Answer.destroy({where: {'id': req.params.id}}).then(() => {
         res.redirect('/deleteresp')
     }).catch((e) => {
-        console.log('Erro: ', e)
+        res.send('<h1>Erro ao atualizar a tabela</h1>')
     })
     
 })
