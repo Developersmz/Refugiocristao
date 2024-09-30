@@ -179,7 +179,7 @@ router.get('/admincheck', (req, res) => {
 })
 
 router.post('/admincheck', async (req, res) => {
-    const { username, email, password } = req.body
+    const { username, password } = req.body
     const user = await User.findOne({where: {username} })
 
     if (user && bcrypt.compareSync(password, user.password)){
