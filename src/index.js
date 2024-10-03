@@ -64,7 +64,7 @@ app.get('/', async (req, res) => {
 })
 
 // About 
-app.get('/about', (req, res) => {
+app.get('/about', checkLogin, checkAdmin, (req, res) => {
     res.render('about')
 })
 
