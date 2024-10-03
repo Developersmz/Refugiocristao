@@ -189,7 +189,6 @@ app.post('/admincheck', async (req, res) => {
         }
         res.redirect('/dashboard')
     } else {
-        req.flash('error', 'Credenciais inválidas')
         res.redirect('/admincheck')
     }
     
