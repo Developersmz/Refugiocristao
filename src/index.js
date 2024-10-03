@@ -178,8 +178,8 @@ app.get('/admincheck', (req, res) => {
 })
 
 app.post('/admincheck', async (req, res) => {
-    const { email, password } = req.body
-    const user = await User.findOne({where: {email} })
+    const { username, password } = req.body
+    const user = await User.findOne({where: {username} })
 
     if (user && bcrypt.compareSync(password, user.password)){
         req.session.user = {
