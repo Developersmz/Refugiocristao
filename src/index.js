@@ -59,7 +59,6 @@ app.get('/', async (req, res) => {
         res.render('index', {about: aboutContent})
     }
     catch(e){
-        console.error('ERRO: ', e)
         res.status(500).send('Erro interno no servidor')
     }
 })
@@ -106,7 +105,6 @@ app.get('/editresp', checkLogin, checkAdmin, async (req, res) => {
         res.render('editform', {answers: answerContent})
     }
     catch(e){
-        console.error('ERRO: ', e)
         res.status(500).send('Erro interno no servidor')
     }
 })
@@ -180,9 +178,8 @@ app.get('/admincheck', (req, res) => {
 })
 
 app.post('/admincheck', async (req, res) => {
-    console.log(req.session)
-    const { username, password } = req.body
-    const user = await User.findOne({where: {username} })
+    const { email, password } = req.body
+    const user = await User.findOne({where: {email} })
 
     if (user && bcrypt.compareSync(password, user.password)){
         req.session.user = {
