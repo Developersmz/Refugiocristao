@@ -189,6 +189,7 @@ app.post('/admincheck', async (req, res) => {
         }
         res.redirect('/dashboard')
     } else {
+        console.log("Dados de login incorretos!")
         res.redirect('/admincheck')
     }
     
