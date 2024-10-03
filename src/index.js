@@ -3,22 +3,23 @@ require('dotenv').config()
 const express = require('express')
 const session = require('express-session')
 const app = express()
-
 const MySQLStore = require('express-mysql-session')(session);
-const sequelize = require('../models/db')
 const bcrypt = require('bcryptjs')
-const router = express.Router()
 const { User, Answer, About } = require('../models/Models');
 
-const sessionStore = new MySQLStore({}, sequelize);
+const sessionStore = new MySQLStore({
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
+});
 
 // Config Middleware
-router.use(express.urlencoded({extended: true}))
-router.use(express.static('publlic'))
-
+app.use(express.urlencoded({extended: true}))
+app.use(express.static('public'))
 app.use(session({
     key: 'refugio_session_key',
-    secret: process.env.SESSION_SECRET,
+    secret: process.env.SESSION_SECRET || 'hsdhgshgdshgdhjhsahsausuahsauhsaiiahsiahsansnkanaisniansaaag',
     store: sessionStore,
     resave: false,
     saveUninitialized: false,
@@ -27,11 +28,12 @@ app.use(session({
     }
 }));
 
+//app.use(router)
 
 // Middleware para verificar se o user esta logado
-function checkLogin(req, res, access) {
+function checkLogin(req, res, next) {
     if (req.session.user) {
-        access()
+        next()
     } else {
         req.flash('error', 'Faça login para acessar esta página');
         res.redirect('/admincheck')
@@ -39,17 +41,17 @@ function checkLogin(req, res, access) {
 }
 
 // Checar se tem permissoes de administrador
-function checkAdmin(req, res, access){
+function checkAdmin(req, res, next){
     if (req.session.user && req.session.user.isAdmin){
-        access()
+        next()
     }
     else{
-        res.status(403).send('Acesso negado')
+        return res.status(403).send('Acesso negado')
     }
 }
 
 // Rota inicial
-router.get('/', async (req, res) => {
+app.get('/', async (req, res) => {
     try{
         // About content
         about = await About.findAll()
@@ -64,11 +66,11 @@ router.get('/', async (req, res) => {
 })
 
 // About 
-router.get('/about', (req, res) => {
+app.get('/about', (req, res) => {
     res.render('about')
 })
 
-router.post('/about', (req, res) => {
+app.post('/about', (req, res) => {
     const { title, text } = req.body
     const about = {
         title: title,
@@ -85,11 +87,11 @@ router.post('/about', (req, res) => {
 })
 
 // Adicionar resposta
-router.get('/addresp', checkLogin, checkAdmin, (req, res) => {
+app.get('/addresp', checkLogin, checkAdmin, (req, res) => {
     res.render('addform')
 })
 
-router.post('/newAnswer', (req, res) => {
+app.post('/newAnswer', (req, res) => {
     Answer.create({
         title: req.body.title,
         category: req.body.category,
@@ -98,7 +100,7 @@ router.post('/newAnswer', (req, res) => {
 })
 
 // Editar resposta
-router.get('/editresp', checkLogin, checkAdmin, async (req, res) => {
+app.get('/editresp', checkLogin, checkAdmin, async (req, res) => {
     try{
         answers = await Answer.findAll({order: [['id', 'ASC']]})
         answerContent = answers.map(content => content.toJSON())
@@ -110,14 +112,14 @@ router.get('/editresp', checkLogin, checkAdmin, async (req, res) => {
     }
 })
 
-router.get('/editAnswer/:id', checkLogin, checkAdmin, async (req, res) => {
+app.get('/editAnswer/:id', checkLogin, checkAdmin, async (req, res) => {
     const answer = await Answer.findByPk(req.params.id)
     answerItem = answer.toJSON()
     res.render('editform', {answer: answerItem})
 })
 
 // Salvar alteracoes e atualizar a resposta
-router.post('/saveChanges', (req, res) => {
+app.post('/saveChanges', (req, res) => {
     Answer.update({title: req.body.title, 
         category: req.body.category,
         answer: req.body.answer}, {where: {
@@ -131,7 +133,7 @@ router.post('/saveChanges', (req, res) => {
 })
 
 // Eliminar resposta
-router.get('/deleteresp', checkLogin, checkAdmin, async (req, res) => {
+app.get('/deleteresp', checkLogin, checkAdmin, async (req, res) => {
     try{
         answers = await Answer.findAll()
         answerContent = answers.map(content => content.toJSON())
@@ -143,7 +145,7 @@ router.get('/deleteresp', checkLogin, checkAdmin, async (req, res) => {
 })
 
 // Eliminar uma resposta especifica
-router.get('/deleteAnswer/:id', checkLogin, checkAdmin, (req, res) => {
+app.get('/deleteAnswer/:id', checkLogin, checkAdmin, (req, res) => {
     Answer.destroy({where: {'id': req.params.id}}).then(() => {
         res.redirect('/deleteresp')
     }).catch((e) => {
@@ -153,7 +155,7 @@ router.get('/deleteAnswer/:id', checkLogin, checkAdmin, (req, res) => {
 })
 
 // Rota das respostas
-router.get('/respostas', async (req, res) => {
+app.get('/respostas', async (req, res) => {
     try{
         answers = await Answer.findAll({order: [['title', 'ASC']]})
         answerContent = answers.map(content => content.toJSON())
@@ -166,7 +168,7 @@ router.get('/respostas', async (req, res) => {
 })
 
 // Mostrar uma resposta especifica
-router.get('/shower/:id', async (req, res) => {
+app.get('/shower/:id', async (req, res) => {
     answer = await Answer.findByPk(req.params.id)
     content = answer.toJSON()
     res.render('shower', {answer: content})
@@ -174,11 +176,12 @@ router.get('/shower/:id', async (req, res) => {
 
 
 // Rota do Dashboard Adminstrativo
-router.get('/admincheck', (req, res) => {
+app.get('/admincheck', (req, res) => {
     res.render('login')
 })
 
-router.post('/admincheck', async (req, res) => {
+app.post('/admincheck', async (req, res) => {
+    console.log(req.session)
     const { username, password } = req.body
     const user = await User.findOne({where: {username} })
 
@@ -196,16 +199,16 @@ router.post('/admincheck', async (req, res) => {
     
 })
 
-router.get('/dashboard', checkLogin, checkAdmin, async (req, res) => {
+app.get('/dashboard', checkLogin, checkAdmin, async (req, res) => {
     database = await Answer.findAll()
     coutItems = await Answer.count()
     databaseContent = database.map(content => content.toJSON())
     res.render('dashboard', {database: databaseContent, coutItems: coutItems})
 })
 
-router.get('/logout', (req, res) => {
+app.get('/logout', (req, res) => {
     req.session.destroy()
     res.redirect('/')
 })
 
-module.exports = router
+module.exports = app
