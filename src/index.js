@@ -35,7 +35,6 @@ function checkLogin(req, res, next) {
     if (req.session.user) {
         next()
     } else {
-        req.flash('error', 'Faça login para acessar esta página');
         res.redirect('/admincheck')
     }
 }
