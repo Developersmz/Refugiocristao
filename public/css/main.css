@@ -354,8 +354,9 @@ input{
 }
 .about-section .text p{
 	font-size: 1.5rem;
-	margin: 0 0 15px;
+	margin: 10px;
 	color: var(--white);
+	line-height: 1.5;
 }
 .about-text{
 	width: 100%;
