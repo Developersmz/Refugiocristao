@@ -59,7 +59,7 @@ html::-webkit-scrollbar-thumb{
 }
 .header .title span{
     color: var(--main-color);
-    font-size: 19px;
+    font-size: 1.5;
 }
 body{
     background: transparent;
@@ -87,7 +87,7 @@ body{
 	min-height: 60vh;
 }
 .shower p{
-	font-size: 2rem;
+	font-size: 1.7rem;
 	font-family: inherit;
 	font-weight: 400;
 	line-height: 1.8;
