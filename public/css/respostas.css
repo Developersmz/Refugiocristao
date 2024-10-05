@@ -158,6 +158,12 @@ body{
 }
 
 /* Responsive */
+@media (max-width: 600px) {
+	.respostas p {
+		padding: 10px
+		margin: 0
+	}
+}
 @media (max-width: 768px){
 	.respostas .row{
 		display: block;
