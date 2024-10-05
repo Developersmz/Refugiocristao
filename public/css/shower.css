@@ -108,13 +108,16 @@ body{
 
 /* Responsive */
 @media (max-width: 600px) {
+	.header .title span{
+		font-size: 1.9rem;
+	}
 	.shower {
 		padding: 10px;
 		margin: 0 15px 15px 15px;	
 	}
 	.shower p {
 		align-content: initial;
-		font-size: 1.6rem;
+		font-size: 1.5rem;
 	}
 }
 @media (max-width: 768px){
