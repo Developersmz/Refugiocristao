@@ -158,21 +158,15 @@ body{
 }
 
 /* Responsive */
-@media (max-width: 600px) {
-	.respostas p {
-		padding: 10px
-		margin: 0
-	}
-}
 @media (max-width: 768px){
 	.respostas .row{
 		display: block;
 	}
 	.respostas p{
 		font-size: 1.5rem;
-		padding: 5px 0;
+		padding: 20px 0;
 		border-bottom: 1px solid #fffc5b60;
-		margin: 0 5px;
+		margin: 0 20px;
 	}
 	.respostas p:last-child{
 		border: none;
