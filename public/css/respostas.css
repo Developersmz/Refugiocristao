@@ -163,10 +163,10 @@ body{
 		display: block;
 	}
 	.respostas p{
-		font-size: 17px;
-		padding: 20px 0;
+		font-size: 1.5rem;
+		padding: 5px 0;
 		border-bottom: 1px solid #fffc5b60;
-		margin: 0 30px;
+		margin: 0 5px;
 	}
 	.respostas p:last-child{
 		border: none;
