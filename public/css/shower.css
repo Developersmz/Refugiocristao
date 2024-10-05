@@ -114,6 +114,7 @@ body{
 	}
 	.shower p {
 		align-content: initial;
+		font-size: 1.7rem;
 	}
 }
 @media (max-width: 768px){
