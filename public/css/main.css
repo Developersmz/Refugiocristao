@@ -604,8 +604,8 @@ Footer
 	}
 	.text p{
 		text-align: justify;
-		text-indent: 10px;
 		margin: 0 10px;
+		padding: 5px;
 	}
 	.button{
 		margin-top: 30px;
