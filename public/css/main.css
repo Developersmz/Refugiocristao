@@ -627,6 +627,11 @@ Footer
 		margin: 0 20px;
 	}
 }
+@media (max-width: 600px){
+	.text p {
+		text-align: none;
+	}
+}
 @media (max-width: 750px){
 	.menu{
 		display: block;
