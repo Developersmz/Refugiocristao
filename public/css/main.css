@@ -353,7 +353,7 @@ input{
 	border: 1px solid #fffc5b60;
 }
 .about-section .text p{
-	font-size: 1.6rem;
+	font-size: 1.7rem;
 	margin: 10px;
 	color: var(--white);
 	line-height: 1.5;
@@ -605,8 +605,6 @@ Footer
 		margin-right: 30px;
 	}
 	.text p{
-		text-align: justify;
-		margin: 0 10px;
 		padding: 5px;
 	}
 	.button{
