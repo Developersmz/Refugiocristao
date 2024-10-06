@@ -107,6 +107,11 @@ body{
 }
 
 /* Responsive */
+@media (max-width: 400px) {
+	.shower{
+		padding-top: 30px;
+	}
+}
 @media (max-width: 600px) {
 	.main .row{
 		margin-top: 30%;
