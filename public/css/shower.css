@@ -81,7 +81,7 @@ html::-webkit-scrollbar-thumb{
 	align-items: center;
 	justify-content: space-between;
 	width: 100%;
-	padding: 1.5rem 7%;
+	padding: 1rem 7%;
 	z-index: 1000;
     border-bottom: 1px solid #fffc5b28;
     box-shadow: var(--shadow);
