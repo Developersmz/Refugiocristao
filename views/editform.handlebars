@@ -15,7 +15,7 @@
         <div class="category">
           <h4>{{ category }}</h4>
         </div>
-          <a href="/editAnswer/{{id}}" class="editBtn"><button type="submit">Editar</button></a>
+          <a href="/admin/editAnswer/{{id}}" class="editBtn"><button type="submit">Editar</button></a>
         {{/each}}
       </div>
      </div>
@@ -23,7 +23,7 @@
     </div>
     <div class="row">
      <div class="form-to-edit">
-      <form action="/saveChanges" method="post">     
+      <form action="/admin/saveChanges" method="post">     
         <input type="hidden" name="id" value="{{ answer.id }}">
         <input type="text" name="title" placeholder="{{ answer.title }}"><br>
         <select name="category" id="category-sec">
@@ -256,7 +256,7 @@
           <option>Zelo</option>
         </select><br>
         <textarea name="answer" id="answer-text" cols="30" rows="10">{{ answer.answer }}</textarea><br>
-        <a href="/saveChanges"><button type="submit">Editar</button></a>
+        <a href="/admin/saveChanges"><button type="submit">Editar</button></a>
       </form>
      </div>
      </div>

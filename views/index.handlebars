@@ -51,7 +51,7 @@
 					</p>
 
 					<p class="paragrafo-4 top">
-						As respostas aqui encontradas são todas copiadas dos livros o-que-respondi no seus volumes <a href="#">(1-3)</a>; como também de outros vídeos disponíveis no YouTube: <a href="http://WWW.respondi.com.br/" target="_blank">O que respondi</a>;
+						As respostas aqui encontradas são todas copiadas dos livros o-que-respondi. Como também de vídeos disponíveis no YouTube: <a href="http://WWW.respondi.com.br/" target="_blank">O que respondi</a>;
 						Também apoiado em livros de vários autores tais como: <strong>Mario Persona, Bruce Anstey, Andrew Miller, Paul Wilson</strong>, entre outros.
 					</p>
 
@@ -95,7 +95,7 @@
 			</div>
 			<div class="gallery">
 				<div class="item">
-					<img src="img/images/pic-21.png">
+					<img src="img/images/pic-21.jpg">
 				</div>
 				<div class="item">
 				 	<img src="img/images/pic-2.png">
@@ -116,52 +116,52 @@
 					<img src="img/images/pic-7.png">
 				</div>
 				<div class="item">
-					<img src="img/images/pic-8.png">
+					<img src="img/images/pic-8.jpg">
 				</div>
 				<div class="item">
-					<img src="img/images/pic-9.png">
+					<img src="img/images/pic-9.jpg">
 				</div>
 				<div class="item">
-					<img src="img/images/pic-10.png">
+					<img src="img/images/pic-10.jpg">
 				</div>
 				<div class="item">
-					<img src="img/images/pic-11.png">
+					<img src="img/images/pic-11.jpg">
 				</div>
 				<div class="item">
-					<img src="img/images/pic-12.png">
+					<img src="img/images/pic-12.jpg">
 				</div>
 				<div class="item">
-					<img src="img/images/pic-13.png">
+					<img src="img/images/pic-13.jpg">
 				</div>
 				<div class="item">
-					<img src="img/images/pic-14.png">
+					<img src="img/images/pic-14.jpg">
 				</div>
 				<div class="item">
 					<img src="img/images/pic-15.png">
 				</div>
 				<div class="item">
-					<img src="img/images/pic-16.png">
+					<img src="img/images/pic-16.jpg">
 				</div>
 				<div class="item">
-					<img src="img/images/pic-17.png">
+					<img src="img/images/pic-17.jpg">
 				</div>
 				<div class="item">
-					<img src="img/images/pic-18.png">
+					<img src="img/images/pic-18.jpg">
 				</div>
 				<div class="item">
-					<img src="img/images/pic-19.png">
+					<img src="img/images/pic-19.jpg">
 				</div>
 				<div class="item">
-					<img src="img/images/pic-20.png">
+					<img src="img/images/pic-20.jpg">
 				</div>
 				<div class="item">
-					<img src="img/images/pic-22.png">
+					<img src="img/images/pic-22.jpg">
 				</div>
 				<div class="item">
-					<img src="img/images/pic-23.png">
+					<img src="img/images/pic-23.jpg">
 				</div>
 				<div class="item">
-					<img src="img/images/pic-24.png">
+					<img src="img/images/pic-24.jpg">
 				</div>
 				<div class="item">
 					<img src="img/images/pic-1.png">
@@ -216,12 +216,18 @@
 			<p><a href="https://developersmz.onrender.com/">Afilíados</a></p>
 			<p><a href="https://developersmz.onrender.com/">Outros Serviços</a></p>
 			<p><a href="https://developersmz.onrender.com/">Empresa</a></p>
+			<p><a href="/auth/admincheck">Admin</a></p>
+			{{#if user.isAdmin}}
+				<p><a href="/admin/dashboard">Dashboard</a></p>
+				<p><a href="/auth/logout">Logout</a></p>
+		  	{{/if}}
 		  </div>
 		  <div class="footer-item">
 		  	<h3>Contate-nos</h3>
 		  	<p>+258 873 807 402</p>
 			<p>+258 850 115 183</p>
 		  	<p>refugiocristao1@gmail.com</p>
+			<p>developersmz12@gmail.com</p>
 		  
 		  <div class="social-links">
   			<a href="https://www.facebook.com/profile.php?id=61556706071013" target="_blank"><i class="fab fa-facebook-f"></i></a>
