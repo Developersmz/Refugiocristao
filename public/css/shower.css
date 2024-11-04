@@ -146,12 +146,11 @@ body{
 		margin-top: 30%;
 	}
 	.header .title span{
-		font-size: 1.5rem;
+		font-size: 1.2rem;
 	}
 	.shower {
-		margin-top: 30px;
 		padding: 10px;
-		margin: 0 15px 15px 15px;	
+		margin: 30px 15px 15px 15px;	
 	}
 	.shower p {
 		align-content: initial;
