@@ -149,24 +149,24 @@ body{
 
 form{
     background-color: var(--blue);
-    width: 90rem;
-    min-height: 10rem;
+    width: 50%;
+    height: 50%;
     box-shadow: var(--shadow);
     padding: 1rem;
     border-radius: 20px;
     border: 1px solid #fffc5b28;
-    margin-left: 15%;
+    margin: auto;
 }
 .form-to-edit form input,
 .form-to-edit form select,
 .form-to-edit form textarea{
-    width: 80rem;
+    width: 90%;
 }
 .form-to-edit form textarea {
-    height: 20rem;
+    height: 90%;
 }
 input{
-    min-width: 40rem;
+    width: 100%;
     padding: 1rem;
     margin: 10px 0;
     border: 1px solid #fffc5b28;
@@ -206,11 +206,11 @@ textarea:focus{
     border: 1px solid var(--focus);
 }
 button{
-    padding: 10px 7%;
+    padding: 6px 8%;
     margin: 10px 0;
     border-radius: 10px;
     font-size: 15px;
-    border: 1px solid var(--main-color);
+    border: 1px solid #fffc5b54;
     color: var(--main-color);
     background: transparent;
     cursor: pointer;
@@ -268,7 +268,6 @@ button:hover{
 	form {
         margin: auto;
         width: 90%;
-        min-height: 50rem;
     }
     .form-to-edit form input,
     .form-to-edit form select,
@@ -277,9 +276,14 @@ button:hover{
     }
 
 }
-@media (max-width: 360px){
+@media (max-width: 600px){
 	form {
         margin: auto;
         width: 90%;
+        height: max-content;
+        margin-bottom: 20px;
+    }
+    input {
+        width: 85%;
     }
 }
