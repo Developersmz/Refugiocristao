@@ -37,12 +37,30 @@ router.get('/addresp', checkLogin, checkAdmin, (req, res) => {
 })
 
 router.post('/newAnswer', (req, res) => {
-    Answer.create({
-        title: req.body.title,
-        category: req.body.category,
-        answer: req.body.answer
-    }).then(() => res.redirect('/respostas')).catch(() => res.send('<h1>Erro ao atualizar a tabela</h1>'))
-})
+    const { title, category, answer } = req.body;
+
+    Answer.findOne({
+        where: {
+            title: title
+        }
+    })
+    .then(existingAnswer => {
+        if (existingAnswer) {
+            // Caso já exista uma resposta com os mesmos dados
+            res.render('output', { error: "Resposta já existe na tabela" });
+        } else {
+            // Caso não exista, cria uma nova resposta
+            return Answer.create({
+                title,
+                category,
+                answer
+            })
+            .then(() => res.redirect('/respostas'))
+            .catch(() => res.send('<h1>Erro ao atualizar a tabela</h1>'));
+        }
+    })
+    .catch(() => res.send('<h1>Erro ao verificar a existência da resposta</h1>'));
+});
 
 // Editar resposta
 router.get('/editresp', checkLogin, checkAdmin, async (req, res) => {
