@@ -46,7 +46,6 @@ const ask = async (req, res) => {
 
         if (!relevantSections.length) {
             return res.render('ask', {
-                question,
                 error: 'Nenhuma resposta encontrada para sua pergunta.',
             });
         }
