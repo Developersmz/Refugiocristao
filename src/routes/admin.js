@@ -10,7 +10,7 @@ router.get('/dashboard', checkLogin, checkAdmin, async (req, res) => {
     res.render('dashboard', {database: databaseContent, coutItems: coutItems})
 })
 
-router.get('/addBook', (req, res) => {
+router.get('/addBook', checkLogin, checkAdmin, (req, res) => {
     res.render('book')
 })
 
