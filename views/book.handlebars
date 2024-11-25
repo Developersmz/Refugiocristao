@@ -1,0 +1,59 @@
+<link rel="stylesheet" href="/css/form.css">
+
+<section class="sec-form">
+    <div class="section-title">
+        <h1>Criar um livro</h1>
+    </div>
+    <div class="container">
+        <div class="row">
+            <form action="/admin/createBook" method="post">
+                {{#if success}}
+                    <div class="alert alert-success">
+                        <p>{{success}}</p>
+                    </div>
+                {{/if}}
+                {{#if error}}
+                    <div class="alert alert-danger">
+                        <p>{{error}}</p>
+                    </div>
+                {{/if}}
+                <div class="input-group">
+                    <input type="text" id="title" name="title" required placeholder="Título do Livro">
+                </div>
+
+                <div id="sections">
+                    <div class="section">
+                        <div class="input-group">
+                            <input type="text" name="subtitles[]" required placeholder="Subtítulo">
+                        </div>
+                        <div class="input-group">
+                            <textarea name="contents[]" id="book-text" rows="4" required placeholder="Conteúdo:"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="button" id="add-section">Adicionar Seção</button>
+                <button type="submit">Salvar Livro</button>
+            </form>
+        </div>
+    </div>
+</section>
+
+<script>
+    const addSectionButton = document.getElementById('add-section');
+    const sectionsDiv = document.getElementById('sections');
+
+    addSectionButton.addEventListener('click', () => {
+        const sectionHTML = `
+            <div class="section">
+                <div class="input-group">
+                    <input type="text" name="subtitles[]" required placeholder="Subtítulo:">
+                </div>
+                <div class="input-group">
+                    <textarea name="contents[]" id="book-text" rows="4" required placeholder="Conteúdo:"></textarea>
+                </div>
+            </div>
+        `;
+        sectionsDiv.insertAdjacentHTML('beforeend', sectionHTML);
+    });
+</script>

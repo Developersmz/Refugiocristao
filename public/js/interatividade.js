@@ -1,4 +1,13 @@
 document.addEventListener("DOMContentLoaded", () => {
+    
+    const urlParams = new URLSearchParams(window.location.search)
+    if (urlParams.has('logged_in')) {
+        const cleanUrl = window.location.href.split('?')[0]
+        window.history.replaceState({}, document.title, cleanUrl)
+        
+        window.location.reload()
+    }
+    
     let themeButton = document.querySelector('.theme-toggler')
 
     themeButton.onclick = () => {

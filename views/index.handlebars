@@ -11,6 +11,7 @@
 	  <nav class="nav">
 	  	<a href="#home" class="nav-item">home</a>
 	  	<a href="/respostas" class="nav-item">respostas</a>
+		<a href="/refugiocristao/perguntar" class="nav-item">dúvidas?</a>
 	  	<a href="#gallery" class="nav-item">galeria</a>
 		<a href="#about" class="nav-item">Sobre</a>
 	  	<a href="#footer" class="nav-item">contato</a>
@@ -54,6 +55,9 @@
 					</p>
 					<p class="top">
 						Para acessar as respostas click no menu acima em <span><a href="/respostas">Respostas</a></span> e para facilitar a sua busca use o ícone de pesquisa.
+					</p>
+					<p class="top">
+						Tem alguma dúvida? Se tiver, acesse a <span><a href="/refugiocristao/perguntar">área de dúvidas</a></span> e faça a sua pergunta!
 					</p>
 					<div class="about-btn">
 						<a href="#about" class="btn btn-about">saber mais</a>
@@ -194,19 +198,31 @@
 	   <div class="container">
 		<div class="row">
 		  <div class="footer-item">
-		  	<h3>Nossa Localização</h3>
+		  	<h3>RefúgioCristão</h3>
 			<p>Moçambique</p>
 		  	<p>Maputo - Matola <br>(B. patrice lumumba)</p>
 		  </div>
 		  <div class="footer-item">
-			<h3>Links</h3>
-			<p><a href="/respostas">Respostas</a></p>
+		  	<h3>Sobre</h3>
+			<p><a href="#about">RefúgioCristão</a></p>
+			<p><a href="https://developersmz.onrender.com/">Empresa</a></p>
 			<p><a href="https://developersmz.onrender.com/">Afilíados</a></p>
 			<p><a href="https://developersmz.onrender.com/">Outros Serviços</a></p>
-			<p><a href="https://developersmz.onrender.com/">Empresa</a></p>
+		  </div>
+		  <div class="footer-item">
+			<h3>Links</h3>
+			<p><a href="/refugiocristao/perguntar">Dúvidas?</a></p>
+			<p><a href="/respostas">Respostas</a></p>
+			<p><a href="#gallery">Galeria</a></p>
+
+			{{#if user}}
+				<p><a href="/auth/signout">Terminar sessão</a></p>
+			{{else}}
+				<p><a href="/auth/signin">Entrar</a></p>
+				<p><a href="/auth/signup">Criar conta</a></p>
+			{{/if}}
 			{{#if user.isAdmin}}
 				<p><a href="/admin/dashboard">Dashboard</a></p>
-				<p><a href="/auth/logout">Logout</a></p>
 		  	{{/if}}
 		  </div>
 		  <div class="footer-item">
@@ -220,13 +236,13 @@
   			<a href="https://www.facebook.com/profile.php?id=61556706071013" target="_blank"><i class="fab fa-facebook-f"></i></a>
   			<a href="https://www.instagram.com/developersmz/" target="_blank"><i class="fab fa-instagram"></i></a>
   			<a href="https://twitter.com/developersmz" target="_blank"><i class="fab fa-twitter"></i></a>
-  			<a href="https://github.com/mavton23" target="_blank"><i class="fab fa-github"></i></a>
+  			<a href="https://github.com/developersmz" target="_blank"><i class="fab fa-github"></i></a>
 		  </div>
 		 </div>
 		</div>
 		  <div class="row">
 			  <div class="copyright">
-			  	 <p>Refúgio Cristão &copy; 2024 | designed by DevelopersMz</p>
+			  	 <p>Refúgio Cristão &copy; {{currentYear}} | designed by DevelopersMz</p>
 			  </div>
 		  </div>
 		</div>

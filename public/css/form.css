@@ -55,7 +55,6 @@ Global Settings
 	padding: 0;
 	outline: none;
 	text-decoration: none; 
-	transition: all 0.3s ease;
 }
 html{
 	font-size: 62.5%;
@@ -94,7 +93,7 @@ header a {
 .row{
 	display: flex;
 	flex-wrap: wrap;
-	margin-top: 11%;
+	margin-top: 5%;
     text-align: center;
 }
 .section-title{
@@ -111,6 +110,18 @@ header a {
     margin: 20px 0;
     position: relative;
 	text-align: center;
+}
+.section-title p{
+    font-size: 1.4em;
+    color: var(--main-color);
+    font-family: inherit;
+    font-weight: 400;
+    margin: 20px 0;
+    position: relative;
+	text-align: center;
+}
+.section-title p a{
+    color: var(--color-light);
 }
 .hidden{
     display: none;
@@ -138,7 +149,8 @@ h4{
 }
 
 body{
-    background-color: var(--blue);
+    background-color: var(--black);
+    transition: all 0.3s ease;
 }
 /* ------------
  Form to Edit 
@@ -148,7 +160,7 @@ body{
 }
 
 form{
-    background-color: var(--blue);
+    background-color: var(--black);
     width: 50%;
     height: 50%;
     box-shadow: var(--shadow);
@@ -167,7 +179,7 @@ form{
 }
 input{
     width: 100%;
-    padding: 1rem;
+    padding: 2rem;
     margin: 10px 0;
     border: 1px solid #fffc5b28;
     border-radius: 20px;
@@ -195,12 +207,15 @@ select:focus{
 textarea{
     color: var(--lightgray);
     min-width: 40rem;
-    padding: 1rem;
+    padding: 2rem;
     margin: 10px 0;
     border: 1px solid #fffc5b28;
     border-radius: 20px;
     background: transparent;
     resize: none;   
+}
+#book-text {
+    width: 100%;
 }
 textarea:focus{
     border: 1px solid var(--focus);
@@ -218,7 +233,7 @@ button{
 }
 
 button:hover{
-    border: 1px solid var(--white);
+    border-color: #ffffff6e;
     color: var(--white);
 }
 .alert {
@@ -227,7 +242,9 @@ button:hover{
     border: 1px solid transparent;
     border-radius: 4px;
   }
-  
+  .alert p {
+    font-size: 1.6em;
+  }
   .alert-success {
     background-color: rgba(76, 175, 80, 0.6);
     color: white;

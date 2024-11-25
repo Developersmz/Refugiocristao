@@ -1,0 +1,32 @@
+<link rel="stylesheet" href="/css/form.css">
+
+<section class="sec-form">
+  <div class="section-title">
+    <h1>Crie uma conta</h1>
+    <p>Cadastre-se e torne-se um membro | <a href="/auth/signin">Entrar</a></p>
+  </div>
+  <div class="container">
+    <div class="row">
+      <form action="/auth/signup" method="post">
+      <div class="input-group">
+            <input type="text" name="name" placeholder="Nome do usuário" required>
+      </div>
+      <div class="input-group">
+            <input type="email" name="email" placeholder="Email" required>
+      </div>
+      <div class="input-group">
+        <input type="password" name="password" placeholder="Palavra-passe" required>
+      </div>
+      <div class="input-group">
+        <input type="password" name="confpass" placeholder="Confirme a Palavra-passe" required>
+      </div>
+        {{#if error}}
+          <div class="alert alert-danger">
+            <p>{{error}}</p>
+          </div>
+        {{/if}}
+        <button type="submit" class="btn">Registar</button>
+      </form>
+    </div>
+  </div>
+</section>

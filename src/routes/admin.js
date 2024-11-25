@@ -1,7 +1,7 @@
 const express = require('express')
 const router = express.Router()
 const { checkLogin, checkAdmin } = require('../../configs/passport')
-const { About, Answer } = require('../models/Models')
+const { About, Answer, Book, BookSection } = require('../models/Models')
 
 router.get('/dashboard', checkLogin, checkAdmin, async (req, res) => {
     database = await Answer.findAll()
@@ -9,6 +9,43 @@ router.get('/dashboard', checkLogin, checkAdmin, async (req, res) => {
     databaseContent = database.map(content => content.toJSON())
     res.render('dashboard', {database: databaseContent, coutItems: coutItems})
 })
+
+router.get('/addBook', (req, res) => {
+    res.render('book')
+})
+
+router.post('/createBook', async (req, res) => {
+    const { title, subtitles, contents } = req.body;
+
+    try {
+        // Verificar se o livro já existe
+        const existingBook = await Book.findOne({ where: { title } });
+        if (existingBook) {
+            return res.render('book', { error: "O livro já foi adicionado!" });
+        }
+
+        // Criar o livro
+        const newBook = await Book.create({ title });
+
+        // Criar as seções do livro
+        for (let i = 0; i < subtitles.length; i++) {
+            const subtitle = subtitles[i];
+            const content = contents[i];
+
+            await BookSection.create({
+                bookId: newBook.id,
+                subtitle,
+                content,
+            });
+        }
+
+        return res.render('book', { success: "Livro adicionado com sucesso!" });
+    } catch (error) {
+        console.error("Erro ao adicionar o livro:", error);
+        return res.render('book', { error: "Ocorreu um erro ao adicionar o livro. Tente novamente." });
+    }
+});
+
 
 // About 
 router.get('/about', (req, res) => {

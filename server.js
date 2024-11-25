@@ -38,19 +38,19 @@ app.set('view engine', 'handlebars')
 app.use(passport.initialize())
 app.use(passport.session())
 app.use(express.static('public'))
-app.use(bodyParser.urlencoded({extended: false}))
-app.use(bodyParser.json())
+app.use(bodyParser.json({ limit: '10mb' }))
+app.use(bodyParser.urlencoded({limit: '10mb' , extended: true}))
 
 // Importar as rotas
 const index = require('./src/routes/index')
 const auth = require('./src/routes/auth')
 const admin = require('./src/routes/admin')
-
+const ask = require('./src/routes/ask')
 
 app.use('/auth', auth)
 app.use('/', index)
 app.use('/admin', admin)
-
+app.use('/refugiocristao', ask)
 
 
 

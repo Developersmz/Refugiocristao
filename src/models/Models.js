@@ -1,5 +1,6 @@
 const db = require('../../configs/db')
-const { DataTypes } = require('sequelize')
+const { DataTypes, Model } = require('sequelize')
+const bcrypt = require('bcryptjs')
 
 const User = db.sequelize.define('User', {
     username: {
@@ -53,12 +54,67 @@ const Answer = db.sequelize.define('Answer', {
     }
 })
 
-// db.sequelize.sync({ alter: true })
-//     .then(() => {
-//         console.log('Banco de dados sincronizado e modelo atualizado.');
-//     })
-//     .catch((err) => {
-//         console.log('Erro ao sincronizar o banco de dados:', err);
-//     });
+const Book = db.sequelize.define('Book', {
+    title: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: true,
+    },
+    
+})
 
-module.exports = { User, About, Answer }
+const BookSection = db.sequelize.define('BookSection', {
+    bookId: {
+        type: DataTypes.INTEGER,
+        allowNull: false,
+        references: {
+            model: 'Books',
+            key: 'id'
+        }
+    },
+    subtitle: {
+        type: DataTypes.STRING,
+        allowNull: true
+    },
+    content: {
+        type: DataTypes.TEXT('long'),
+        allowNull: false
+    },
+}, {
+    indexes: [
+        {
+            type: 'FULLTEXT',
+            fields: ['subtitle', 'content']
+        }
+    ]
+})
+
+const QuestionHistory = db.sequelize.define('QuestionHistory', {
+    userId: {
+        type: DataTypes.INTEGER,
+        allowNull: false
+    },
+    question: {
+        type: DataTypes.TEXT,
+        allowNull: false
+    },
+    answer: {
+        type: DataTypes.TEXT('long'),
+        false: false
+    }
+})
+
+Book.hasMany(BookSection, { foreignKey: 'bookId', onDelete: 'CASCADE' })
+BookSection.belongsTo(Book, { foreignKey: 'bookId' })
+QuestionHistory.belongsTo(User, { foreignKey: 'userId', onDelete: 'CASCADE' })
+User.hasMany(QuestionHistory, { foreignKey: 'userId' })
+
+db.sequelize.sync({ alter: true })
+    .then(() => {
+        console.log('Banco de dados sincronizado e modelo atualizado.');
+    })
+    .catch((err) => {
+        console.log('Erro ao sincronizar o banco de dados:', err);
+    });
+
+module.exports = { User, About, Answer, Book, BookSection, QuestionHistory }

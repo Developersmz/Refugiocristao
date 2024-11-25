@@ -4,11 +4,10 @@ const express = require('express')
 const router = express.Router()
 const { User, Answer, About } = require('../models/Models');
 
-
 // Rota inicial
 router.get('/', async (req, res) => {
     try{
-        const userId = req.session.user
+        const userId = req.session.userId
         let user = null
 
         if (userId) {
@@ -47,6 +46,5 @@ router.get('/shower/:id', async (req, res) => {
     content = answer.toJSON()
     res.render('shower', {answer: content})
 })
-
 
 module.exports = router

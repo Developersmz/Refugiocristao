@@ -1,0 +1,26 @@
+<link rel="stylesheet" href="/css/form.css">
+
+<section class="sec-form">
+  <div class="section-title">
+    <h1>Entrar</h1>
+    <p>Seja bem vindo de volta | <a href="/auth/signup">Inscrever-se</a></p>
+  </div>
+  <div class="container">
+    <div class="row">
+      <form action="/auth/signin" method="post">
+        <div class="input-group">
+            <input type="email" name="email" placeholder="Email" required>
+        </div>
+        <div class="input-group">
+            <input type="password" name="password" placeholder="Palavra-passe" required>
+        </div>
+        {{#if error}}
+          <div class="alert alert-danger">
+            <p>{{error}}</p>
+          </div>
+        {{/if}}
+        <button type="submit" class="btn">Entrar</button>
+      </form>
+    </div>
+  </div>
+</section>
