@@ -9,6 +9,7 @@ router.get('/', async (req, res) => {
     try{
         const userId = req.session.userId
         let user = null
+        let currentYear = new Date().getFullYear()
 
         if (userId) {
             const checkuser = await User.findByPk(userId)

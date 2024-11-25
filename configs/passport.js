@@ -39,22 +39,22 @@ try {
 
 // Middleware para verificar se o user esta logado
 function checkLogin(req, res, access) {
-    if (req.session.user) {
+    if (req.session.userId) {
         access()
     } else {
-        res.redirect('/auth/admincheck')
+        res.redirect('/auth/signin')
     }
 }
 
 // Checar se tem permissoes de administrador
 function checkAdmin(req, res, access){
-    if (req.session.user){
-        User.findByPk(req.session.user)
+    if (req.session.userId){
+        User.findByPk(req.session.userId)
         .then(user => {
             if (user && user.isAdmin) {
                 access()
             } else {
-                res.status(403).send('<h1>Acesso negado</h1><br><a href="/">Voltar</a>');
+                res.redirect('/')
             }
         })
         .catch(err => {
@@ -63,7 +63,7 @@ function checkAdmin(req, res, access){
         })
     }
     else{
-        res.redirect('auth/admincheck')
+        res.redirect('auth/signin')
     }
 }
 
