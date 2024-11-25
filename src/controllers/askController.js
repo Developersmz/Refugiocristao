@@ -87,7 +87,7 @@ const ask = async (req, res) => {
 
 // Função auxiliar para truncar conteúdo
 function truncateContent(content, question) {
-    const regex = new RegExp(`.{0,100}${question}.{0,100}`, 'i'); // Captura trecho ao redor da pergunta
+    const regex = new RegExp(`.{0,100}${question}.{0,100}`, 'i'); 
     const match = content.match(regex);
     return match ? match[0] : content.substring(0, 1000) + '...'; // Retorna trecho relevante ou primeiros 1000 caracteres
 }

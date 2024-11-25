@@ -20,7 +20,7 @@ router.get('/', async (req, res) => {
         const about = await About.findAll()
         const aboutContent = about.map(content => content.toJSON())
 
-        res.render('index', {about: aboutContent, user})
+        res.render('index', {about: aboutContent, user, currentYear})
     }
     catch(e){
         console.error('ERRO: ', e)
@@ -36,7 +36,6 @@ router.get('/respostas', async (req, res) => {
         res.render('respostas', {answers: answerContent})
     }
     catch(e){
-        console.error('ERRO: ', e)
         res.status(500).send('Erro interno no servidor')
     }
 })

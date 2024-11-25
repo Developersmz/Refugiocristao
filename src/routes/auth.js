@@ -53,7 +53,6 @@ router.post('/signup', async (req, res) => {
         res.redirect('/')
 
     } catch (error) {
-        console.error(error)
         res.render('signup', { error: "Erro ao registrar o usuário, tente novamente." })
     }
 })

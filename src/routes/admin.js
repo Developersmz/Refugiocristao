@@ -48,7 +48,7 @@ router.post('/createBook', async (req, res) => {
 
 
 // About 
-router.get('/about', (req, res) => {
+router.get('/about', checkLogin, checkAdmin, (req, res) => {
     res.render('about')
 })
 
