@@ -27,17 +27,14 @@ router.post('/createBook', async (req, res) => {
         // Criar o livro
         const newBook = await Book.create({ title });
 
-        // Criar as seções do livro
-        for (let i = 0; i < subtitles.length; i++) {
-            const subtitle = subtitles[i];
-            const content = contents[i];
+        // Criar as seções do livro em paralelo
+        const sections = subtitles.map((subtitle, index) => ({
+            bookId: newBook.id,
+            subtitle,
+            content: contents[index],
+        }));
 
-            await BookSection.create({
-                bookId: newBook.id,
-                subtitle,
-                content,
-            });
-        }
+        await BookSection.bulkCreate(sections); // Inserir todos os itens de uma vez
 
         return res.render('book', { success: "Livro adicionado com sucesso!" });
     } catch (error) {
@@ -45,6 +42,7 @@ router.post('/createBook', async (req, res) => {
         return res.render('book', { error: "Ocorreu um erro ao adicionar o livro. Tente novamente." });
     }
 });
+
 
 
 // About 
