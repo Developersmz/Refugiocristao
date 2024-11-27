@@ -7,6 +7,7 @@ const MySQLStore = require('express-mysql-session')(session);
 const handlebars = require('express-handlebars')
 const app = express()
 const bodyParser = require('body-parser')
+const multer = require('multer')
 
 const port = 3000
 
@@ -30,6 +31,11 @@ app.use(session({
       maxAge: 1000 * 60 * 60 * 24
     }
 }));
+
+// Dir to upload
+const upload = multer({ dest: 'uploads/' })
+
+module.exports = upload
 
 const hbs = handlebars.create({ defaultLayout: 'main' }, {allowProtoMethodsByDefault: true})
 app.engine('handlebars', hbs.engine)

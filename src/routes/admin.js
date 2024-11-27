@@ -1,7 +1,12 @@
 const express = require('express')
 const router = express.Router()
+const fs = require('fs/promises')
+const markdownIt = require('markdown-it')
 const { checkLogin, checkAdmin } = require('../../configs/passport')
 const { About, Answer, Book, BookSection } = require('../models/Models')
+const upload = require('../../server')
+const chunkArray = require('../utils/lotes')
+const { sequelize } = require('../../configs/db')
 
 router.get('/dashboard', checkLogin, checkAdmin, async (req, res) => {
     database = await Answer.findAll()
@@ -14,36 +19,122 @@ router.get('/addBook', checkLogin, checkAdmin, (req, res) => {
     res.render('book')
 })
 
-router.post('/createBook', async (req, res) => {
-    const { title, subtitles, contents } = req.body;
-
+router.post('/createBook', upload.single('file'), async (req, res) => {
+    let transaction
+    
     try {
-        // Verificar se o livro já existe
-        const existingBook = await Book.findOne({ where: { title } });
-        if (existingBook) {
-            return res.render('book', { error: "O livro já foi adicionado!" });
-        }
+        const { inputMode, title, subtitles, contents } = req.body;
 
-        // Criar o livro
-        const newBook = await Book.create({ title });
+        if (inputMode === 'manual') {
 
-        // Criar as seções do livro em paralelo
-        const sections = subtitles.map((subtitle, index) => ({
-            bookId: newBook.id,
-            subtitle,
-            content: contents[index],
-        }));
+            if (!title || !Array.isArray(subtitles) || !Array.isArray(contents)) {
+                return res.render('book', { error: 'Dados inválidos. Tente novamente.' });                
+            }
 
-        await BookSection.bulkCreate(sections); // Inserir todos os itens de uma vez
+            if (subtitles.length !== contents.length) {
+                return res.render('book', { error: 'Subtítulos e conteúdos devem ter o mesmo número de itens.' })
+            }
 
-        return res.render('book', { success: "Livro adicionado com sucesso!" });
+            const transaction = await sequelize.transaction()
+
+            // Lógica para salvar manualmente
+            const book = await Book.create({ title }, { transaction });
+
+            const sections = subtitles.map((subtitle, index) => ({
+                bookId: book.id,
+                subtitle,
+                content: contents[index]
+            }))
+
+            await BookSection.bulkCreate(sections, { transaction })
+
+            await transaction.commit();
+
+            return res.render('book', { success: 'Livro criado com sucesso!' });
+        } else if (inputMode === 'upload' && req.file) {
+
+            if (!req.file) {
+                return res.render('book', { error: 'Nenhum ficheiro recebido!' })
+            }
+
+            const transaction = await sequelize.transaction()
+            // Lógica para salvar via upload
+            const filePath = req.file.path;
+            const rawMarkdown = await fs.readFile(filePath, 'utf-8');
+            const bookData = parseMarkdown(rawMarkdown);
+
+            const book = await Book.create({ title: bookData.title }, { transaction });
+        
+
+            const sections = bookData.sections.map((section) => ({
+                bookId: book.id,
+                subtitle: section.subtitle,
+                content: section.content,
+            }));
+
+            const BATCH_SIZE = 200
+            const sectionsChunks = chunkArray(sections, BATCH_SIZE)
+
+
+            for (const chunk of sectionsChunks) {
+                await BookSection.bulkCreate(chunk, { transaction })
+            }
+
+            await transaction.commit();
+            await fs.unlink(filePath);
+
+            return res.render('book', { success: 'Livro criado com sucesso via upload!' });
+        } 
     } catch (error) {
-        console.error("Erro ao adicionar o livro:", error);
-        return res.render('book', { error: "Ocorreu um erro ao adicionar o livro. Tente novamente." });
+        if(transaction) {
+            await transaction.rollback();
+        }
+        console.error(error);
+        return res.render('book', { error: 'Erro ao criar o livro: ' + error.message });
     }
 });
 
+function parseMarkdown(rawMarkdown) {
+    const md = new markdownIt();
+    const tokens = md.parse(rawMarkdown, {});
+    const bookData = { title: '', sections: [] };
 
+    let currentSection = null;
+    tokens.forEach((token, index) => {
+        if (token.type === 'heading_open' && token.tag === 'h2') {
+            // Captura o título do livro
+            const nextToken = tokens[index + 1];
+            if (nextToken && nextToken.type === 'inline') {
+                bookData.title = nextToken.content;
+            }
+        } else if (token.type === 'heading_open' && token.tag === 'h3') {
+            // Inicia uma nova seção
+            if (currentSection) {
+                // Adiciona a seção anterior ao array antes de criar uma nova
+                bookData.sections.push({ ...currentSection });
+            }
+            currentSection = { subtitle: '', content: '' };
+
+            const nextToken = tokens[index + 1];
+            if (nextToken && nextToken.type === 'inline') {
+                currentSection.subtitle = nextToken.content;
+            }
+        } else if (token.type === 'paragraph_open' && currentSection) {
+            // Adiciona o conteúdo ao parágrafo da seção atual
+            const nextToken = tokens[index + 1];
+            if (nextToken && nextToken.type === 'inline') {
+                currentSection.content += `${nextToken.content}\n`;
+            }
+        }
+    });
+
+    // Adiciona a última seção ao array, se houver
+    if (currentSection) {
+        bookData.sections.push({ ...currentSection });
+    }
+
+    return bookData;
+}
 
 // About 
 router.get('/about', checkLogin, checkAdmin, (req, res) => {
