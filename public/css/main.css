@@ -375,6 +375,10 @@ input{
 	margin: 0 0 15px;
 	color: var(--white);
 }
+.about-section .text a{
+	font-size: 1.4rem;
+	color: var(--main-color);
+}
 .about-text{
 	width: 100%;
 	padding: 0 15px;
