@@ -162,30 +162,43 @@ router.get('/addresp', checkLogin, checkAdmin, (req, res) => {
     res.render('addform')
 })
 
-router.post('/newAnswer', (req, res) => {
-    const { title, category, answer } = req.body;
+router.post('/newAnswer', async (req, res) => {
+    let transaction
 
-    Answer.findOne({
-        where: {
-            title: title
+    try {
+        const { book, titles, categories, answers } = req.body;
+            
+        if (!Array.isArray(titles) || !Array.isArray(categories) || !Array.isArray(answers)) {
+            return res.render('addform', { error: 'Dados inválidos. Tente novamente.' });                
         }
-    })
-    .then(existingAnswer => {
-        if (existingAnswer) {
-            // Caso já exista uma resposta com os mesmos dados
-            res.render('output', { error: "Resposta já existe na tabela" });
-        } else {
-            // Caso não exista, cria uma nova resposta
-            return Answer.create({
-                title,
-                category,
-                answer
-            })
-            .then(() => res.redirect('/respostas'))
-            .catch(() => res.send('<h1>Erro ao atualizar a tabela</h1>'));
+
+        if (titles.length !== categories.length || titles.length !== answers.length) {
+            return res.render('addform', { error: 'Títulos e conteúdos devem ter o mesmo número de itens.' })
         }
-    })
-    .catch(() => res.send('<h1>Erro ao verificar a existência da resposta</h1>'));
+
+        const transaction = await sequelize.transaction()
+
+        const newAnswers = titles.map((title, index) => ({
+            book,
+            title,
+            category: categories[index],
+            answer: answers[index]
+        }))
+
+        await Answer.bulkCreate(newAnswers, { transaction })
+
+        await transaction.commit()
+
+        return res.render('addform')
+
+
+    } catch (error) {
+        if(transaction) {
+            await transaction.rollback();
+        }
+        console.error(error);
+        return res.render('addform', { error: 'Erro ao criar o livro: ' + error.message });
+    }
 });
 
 // Editar resposta

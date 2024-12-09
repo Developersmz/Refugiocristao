@@ -177,6 +177,34 @@ form{
 .form-to-edit form textarea {
     height: 90%;
 }
+.mode-label {
+    display: inline-block;
+    padding: 8px 12px;
+    margin: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    color: #dadada;
+    border: 2px solid #007BFF;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.mode-label:hover {
+    background-color: #007BFF;
+    color: #fff;
+}
+
+.mode-label input[type="radio"] {
+    display: none; /* Oculta o rádio */
+}
+
+/* Estilo para o label ativo */
+.mode-label input[type="radio"]:checked + .mode-label {
+    background-color: #0056b3;
+    color: #fff;
+    border-color: #0056b3;
+}
 input{
     width: 100%;
     padding: 2rem;
@@ -193,18 +221,20 @@ input::placeholder{
     color: #ccc;
 }
 select{
+    width: 100%;
     color: #ccc;
     min-width: 25rem;
     padding: 1rem;
     margin: 10px 0;
     border: 1px solid #fffc5b28;
     border-radius: 20px;
-    background: var(--blue);
+    background: var(--black);
 }
 select:focus{
     border: 1px solid var(--focus);
 }
 textarea{
+    width: 100%;
     color: var(--lightgray);
     min-width: 40rem;
     padding: 2rem;
