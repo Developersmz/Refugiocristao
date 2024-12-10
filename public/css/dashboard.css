@@ -53,8 +53,7 @@ Global Settings
 	box-sizing: border-box;
 	padding: 0;
 	outline: none;
-	text-decoration: none; 
-	transition: 0.3s ease;
+	text-decoration: none;
 }
 
 html{
@@ -85,7 +84,7 @@ body{
 .row{
 	display: flex;
 	flex-wrap: wrap;
-	margin-top: 11%; 
+	margin-top: 8%; 
 }
 .section-title{
     -ms-flex: 0 0 100%;
@@ -166,7 +165,7 @@ h3{
 .middle{
     background-color: var(--blue);
     position: sticky;
-    height: 30rem;
+    min-height: 30rem;
     padding: 60px;
     border-radius: 10px;
     box-shadow: var(--shadow);
@@ -182,7 +181,6 @@ select{
     padding: 1rem;
     margin: 15px 10px;
     border: 1px solid #fffc5b28;
-    border-radius: 20px;
     background: var(--blue);
 }
 select:focus{
@@ -196,6 +194,10 @@ select:focus{
     font-size: 17px;
     color: var(--main-color);
     margin: 0 5px;
+}
+.statistics-number .slash {
+    font-size: 16px;
+    font-weight: 100;
 }
 .statistics-number span{
     font-size: 16px;

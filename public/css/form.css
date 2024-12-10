@@ -93,8 +93,7 @@ header a {
 .row{
 	display: flex;
 	flex-wrap: wrap;
-	margin-top: 5%;
-    text-align: center;
+	margin-top: 5% auto;
 }
 .section-title{
     -ms-flex: 0 0 100%;
@@ -161,8 +160,8 @@ body{
 
 form{
     background-color: var(--black);
-    width: 50%;
-    height: 50%;
+    width: 100%;
+    min-height: 100%;
     box-shadow: var(--shadow);
     padding: 1rem;
     border-radius: 20px;

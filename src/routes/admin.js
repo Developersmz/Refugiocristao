@@ -10,9 +10,10 @@ const { sequelize } = require('../../configs/db')
 
 router.get('/dashboard', checkLogin, checkAdmin, async (req, res) => {
     database = await Answer.findAll()
-    coutItems = await Answer.count()
+    countrespItems = await Answer.count()
+    countbookItems = await Book.count()
     databaseContent = database.map(content => content.toJSON())
-    res.render('dashboard', {database: databaseContent, coutItems: coutItems})
+    res.render('dashboard', {database: databaseContent, countrespItems: countrespItems, countbookItems: countbookItems})
 })
 
 router.get('/addBook', checkLogin, checkAdmin, (req, res) => {

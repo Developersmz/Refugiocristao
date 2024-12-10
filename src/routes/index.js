@@ -42,9 +42,10 @@ router.get('/respostas', async (req, res) => {
 
 // Mostrar uma resposta especifica
 router.get('/shower/:id', async (req, res) => {
+    let currentYear = new Date().getFullYear()
     answer = await Answer.findByPk(req.params.id)
     content = answer.toJSON()
-    res.render('shower', {answer: content})
+    res.render('shower', {answer: content, currentYear})
 })
 
 module.exports = router

@@ -15,10 +15,10 @@
                   <div class="title">
                     <h4>Actions</h4>
                   </div>
-                  <a href="/admin/addresp">Adicionar</a>
-                  <a href="/admin/addBook">Criar livro</a>
-                  <a href="/admin/editresp">Editar</a>
-                  <a href="/admin/deleteresp">Excluir</a>
+                  <a href="/admin/addresp">Nova resposta</a>
+                  <a href="/admin/addBook">Novo livro</a>
+                  <a href="/admin/editresp">Editar resposta</a>
+                  <a href="/admin/deleteresp">Excluir resposta</a>
                 </div>
               </div>
             </div>
@@ -30,7 +30,7 @@
                   <h4>Overview</h4>
                 </div>
                 <div class="titles">
-                  <label for="title">Titulos: </label>
+                  <label for="title">Respostas: </label>
                   <select id="title" class="overview-item">
                     {{#each database}}
                       <option>{{title}}</option>
@@ -47,14 +47,20 @@
                 </div>
                 <div class="statistics">
                   <div class="statistics-number">
-                    <h6>Titulos |</h6>
-                    <span>{{coutItems}}</span>
+                    <h6>Livros</h6><h6 class="slash">|</h6>
+                    <span>{{countbookItems}}</span>
+                  </div>
+
+                  <div class="statistics-number">
+                    <h6>Respostas</h6><h6 class="slash">|</h6>
+                    <span>{{countrespItems}}</span>
                   </div>
                   
                   <div class="statistics-number">
-                    <h6>Categorias |</h6>
+                    <h6>Categorias</h6><h6 class="slash">|</h6>
                     <span>224</span>
                   </div>
+
                 </div>
               </div>
             </div>
@@ -69,7 +75,7 @@
                 <a href="/respostas">Respostas</a>
                 <a href="/auth/signout">Logout</a>
                 <div class="copyright">
-                  <span>RC &copy; 2024 by DevelopersMz</span>
+                  <span>RC &copy; by DevelopersMz</span>
                 </div>
               </div>
             </div>
