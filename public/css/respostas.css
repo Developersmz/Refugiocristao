@@ -364,9 +364,9 @@ body{
 	top: 100%;
 	right: 7%;
 	background: var(--blue);
-	width: 50rem;
-	height: 5rem;
-	display: flex;
+	min-width: 50rem;
+	min-height: 5rem;
+	display: block;
 	align-items: center;
 	transform: scaleY(0);
 	transform-origin: top;
