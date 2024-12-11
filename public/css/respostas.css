@@ -152,8 +152,8 @@ body{
 	top: 100%;
 	right: 7%;
 	background: var(--blue);
-	min-width: 50rem;
-	min-height: 5rem;
+	min-width: max-content;
+	min-height: max-content;
 	display: block;
 	align-items: center;
 	transform: scaleY(0);
@@ -428,7 +428,7 @@ body{
 		margin-top: 15%;
 	}
 	.header .search-form{
-		width: 90%;
+		min-width: 70%;
 		right: 1rem;
 	}
 

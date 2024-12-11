@@ -37,18 +37,23 @@ document.addEventListener("DOMContentLoaded", () => {
 })
 
 // Nav
-menuButton = document.querySelector('.menu')
+const menuButton = document.querySelector('.menu')
+const menuIcon = document.querySelector("#menu-icon")
+const navElements = document.querySelector('.nav')
+const themeToggler = document.querySelector('.theme-toggler')
 
 menuButton.onclick = () => {
-    document.querySelector('.nav').classList.toggle('open')
-    if (document.querySelector('.nav').classList.contains('open')) {
-        document.querySelector('.theme-toggler').style.display = 'none'
+    navElements.classList.toggle('open')
+    if (navElements.classList.contains('open')) {
+        themeToggler.style.display = 'none'
+        menuIcon.classList.replace("fa-bars", "fa-close")
     }
     else{
-        document.querySelector('.theme-toggler').style.display = 'block'
+        themeToggler.style.display = 'block'
+        menuIcon.classList.replace("fa-close", "fa-bars")
     }
 }
 
 window.onscroll = () => {
-    document.querySelector('.nav').classList.remove('open')
+    navElements.classList.remove('open')
 }

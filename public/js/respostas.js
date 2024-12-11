@@ -1,17 +1,24 @@
 document.addEventListener("DOMContentLoaded", () => {
     
-    document.querySelector('.search-spot').addEventListener("click", () => {
-        document.querySelector('.search-form').classList.toggle('active')
-    })
+    const searchIcon = document.querySelector("#search-icon")
+    const searchSpot = document.querySelector(".search-spot")
+    const searchForm = document.querySelector(".search-form")
 
-    window.onscroll = () => {
-        document.querySelector('.search-form').classList.remove('active')
-    }
+    searchSpot.addEventListener("click", ( ) => {
+        // Ativar formulario de busca
+        searchForm.classList.toggle("active")
+
+        // Atualiza o icone com base no estado do formulario
+        if (searchForm.classList.contains("active")) {
+            searchIcon.classList.replace("fa-search", "fa-close")
+        } else {
+            searchIcon.classList.replace("fa-close", "fa-search")
+        }
+    })
 
 })
 
 // Mostrar respostas ao pesquisar
-
 const inputSearch = document.querySelector('#search-box')
 const suggestionsBox = document.querySelector('#suggestions');
 const labelSearchBtn = document.querySelector('#label-search')
