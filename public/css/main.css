@@ -191,6 +191,7 @@ body{
 	border-radius: 50%;
 	display: inline-block;
 	margin-top: 1px;
+	margin-left: 3px;
 }
 .theme-toggler.dark-mode-on{
 	padding-left: 20px;
