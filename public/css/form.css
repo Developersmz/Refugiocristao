@@ -167,6 +167,7 @@ form{
     border-radius: 20px;
     border: 1px solid #fffc5b28;
     margin: auto;
+    text-align: center;
 }
 .form-to-edit form input,
 .form-to-edit form select,
