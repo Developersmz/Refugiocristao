@@ -33,7 +33,7 @@ router.get('/respostas', async (req, res) => {
     try{
         answers = await Answer.findAll({order: [['title', 'ASC']]})
         answerContent = answers.map(content => content.toJSON())
-        res.render('respostas', {answers: answerContent})
+        res.render('respostas', {answers: answerContent, title: "RefúgioCristão | Respostas"})
     }
     catch(e){
         res.status(500).send('Erro interno no servidor')
@@ -45,7 +45,7 @@ router.get('/shower/:id', async (req, res) => {
     let currentYear = new Date().getFullYear()
     answer = await Answer.findByPk(req.params.id)
     content = answer.toJSON()
-    res.render('shower', {answer: content, currentYear})
+    res.render('shower', {answer: content, currentYear, title: `RefúgioCristão | Shower`})
 })
 
 module.exports = router

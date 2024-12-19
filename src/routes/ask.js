@@ -30,7 +30,7 @@ router.get('/perguntar', checkLogin, async (req, res) => {
             answer: hist.answer
         }))
 
-        res.render('ask', { history: mappedHistory })
+        res.render('ask', { history: mappedHistory, title: "RefúgioCristão | Perguntar" })
     } catch (error) {
         console.log("ERRO: " + error)
     }
@@ -61,6 +61,6 @@ router.get('/pergunta/procurar', checkLogin,  async (req, res) => {
     }
 })
 
-router.post('/perguntar', ask)
+router.post('/perguntar', {ask, title: "RefúgioCristão | Perguntas"})
 
 module.exports = router

@@ -5,7 +5,7 @@ const { User } = require('../models/Models')
 
 // Rota do Dashboard Adminstrativo
 router.get('/signin', (req, res) => {
-    res.render('signin')
+    res.render('signin', { title: "RefúgioCristão | Signin" })
 })
 
 router.post('/signin', async (req, res, next) => {
@@ -27,7 +27,7 @@ router.post('/signin', async (req, res, next) => {
 })
 
 router.get('/signup', (req, res) => {
-    res.render('signup')
+    res.render('signup', { title: "RefúgioCristão | Signup" })
 })
 
 router.post('/signup', async (req, res) => {
