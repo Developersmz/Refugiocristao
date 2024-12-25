@@ -61,6 +61,6 @@ router.get('/pergunta/procurar', checkLogin,  async (req, res) => {
     }
 })
 
-router.post('/perguntar', {ask, title: "RefúgioCristão | Perguntas"})
+router.post('/perguntar')
 
 module.exports = router
