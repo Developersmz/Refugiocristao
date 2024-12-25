@@ -1,11 +1,12 @@
 document.addEventListener("DOMContentLoaded", () => {
     
     const urlParams = new URLSearchParams(window.location.search)
-    if (urlParams.has('logged_in')) {
-        const cleanUrl = window.location.href.split('?')[0]
-        window.history.replaceState({}, document.title, cleanUrl)
+    if (urlParams.has('logged_in') || urlParams.get('welcome') === 'true') {
+        const cleanUrl = window.location.href.split('?')[0];
+        window.history.replaceState({}, document.title, cleanUrl);
         
-        window.location.reload()
+        // Recarrega apenas se for absolutamente necessário
+        location.reload();
     }
     
     let themeButton = document.querySelector('.theme-toggler')

@@ -50,7 +50,14 @@ router.post('/signup', async (req, res) => {
             password
         })
 
-        res.redirect('/')
+        req.logIn(createUser, (err) => {
+            if (err) {
+                console.error(err)
+                return res.render('signup', { error: "Erro ao autenticar o usuário, tente novamente." });
+            }
+            req.session.userId = createUser.id;
+            return res.redirect('/?welcome=true')
+        })
 
     } catch (error) {
         res.render('signup', { error: "Erro ao registrar o usuário, tente novamente." })

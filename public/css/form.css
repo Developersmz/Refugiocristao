@@ -302,6 +302,25 @@ button:hover{
   .alert-danger:hover{
     background-color: rgba(255, 0, 0, 0.8);
   }
+  .footer {
+    padding: 0.5rem;
+  }
+  .footer .footer-qst{
+    font-family: inherit;
+    font-size: 1.3rem;
+    color: white;
+  }
+  .footer .footer-act{
+    font-family: inherit;
+    font-size: 1.3rem;
+    color: #fffc5b;
+    padding-bottom: 1px;
+    transition: all 0.3s ease;
+    border-bottom: 1px solid transparent;
+  }
+  .footer .footer-act:hover {
+    border-color: #fffc5b;
+  }
 
 
 
@@ -332,5 +351,8 @@ button:hover{
     }
     input {
         width: 85%;
+    }
+    .footer {
+        padding-bottom: 2rem;
     }
 }
