@@ -61,6 +61,6 @@ router.get('/pergunta/procurar', checkLogin,  async (req, res) => {
     }
 })
 
-router.post('/perguntar')
+router.post('/perguntar', ask)
 
 module.exports = router
