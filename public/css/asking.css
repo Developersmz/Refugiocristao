@@ -460,8 +460,8 @@ form input {
 	padding: 1rem;
 	font-weight: 300;
 	text-transform: none;
-	border-radius: 15px;
-	border: 2px solid var(--main-color);
+	border-radius: 15px 0 0 15px ;
+	border: none;
 	outline: none;
 	box-shadow: var(--shadow);
 	transition: border 0.3s ease;
