@@ -478,7 +478,7 @@ form label {
 	right: 1%;
 	font-size: 3rem;
 	color: var(--main-color);
-	background-color: var(--bg);
+	background-color: var(--hidden-bg);
 	cursor: pointer;
 	background: transparent;
 	border: none;
