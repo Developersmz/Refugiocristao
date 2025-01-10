@@ -439,11 +439,22 @@ body{
 	height: 100%;
 	border-radius: 10px;
 	background-color: var(--bg);
+	position: relative;
+}
+form {
+	display: flex;
+	align-items: center;
+	position: relative;
+	border-radius: 15px;
+	border: 2px solid var(--main-color);
+}
+form .input-group {
+	flex-grow: 1;
 }
 form input {
 	background-color: var(--hidden-bg);
 	height: 50px;
-	width: 100%;
+	width: 95%;
 	font-size: 1.6rem;
 	color: var(--white);
 	padding: 1rem;
@@ -458,9 +469,6 @@ form input {
 form input::placeholder {
 	color: var(--white);
 }
-form input:focus {
-	border-color: #ccc;
-}
 form label {
 	display: none;
 }
@@ -474,8 +482,9 @@ form label {
 	cursor: pointer;
 	background: transparent;
 	border: none;
-	z-index: 1000;
+	z-index: 1;
 	transition: color 0.3s ease;
+	margin-left: 0.5rem;
 }
 .send-state:hover {
 	color: #ffffff;
@@ -495,6 +504,9 @@ form label {
 	}
 	.form-container {
 		width: 90%;
+	}
+	form input {
+		width: 88%;
 	}
 	.book-results .row-content {
 		margin-top: 15%;
