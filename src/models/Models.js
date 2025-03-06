@@ -104,7 +104,7 @@ const QuestionHistory = db.sequelize.define('QuestionHistory', {
     },
     answer: {
         type: DataTypes.TEXT('long'),
-        false: false
+        allowNull: false
     }
 })
 
